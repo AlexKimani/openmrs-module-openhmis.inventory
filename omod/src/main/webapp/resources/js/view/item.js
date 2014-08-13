@@ -19,7 +19,7 @@ define(
         openhmis.url.backboneBase + 'js/lib/backbone-forms',
         openhmis.url.backboneBase + 'js/model/concept'
     ],
-    function(openhmis) {
+    function(openhmis, __) {
         openhmis.ItemAddEditView = openhmis.GenericAddEditView.extend({
         	
         	initialize: function(options) {
@@ -108,7 +108,7 @@ define(
                     this.modelForm.fields.concept.editor.value = this.$('#concept').val();
                 }
                 openhmis.GenericAddEditView.prototype.save.call(this, event);
-            },
+            }
             
         });
 

@@ -182,6 +182,9 @@ define(
 				if (!attrs.department) {
 					return { department: __("An item needs to be associated with a department") }
 				}
+				if (!attrs.codes || attrs.codes.length < 1)
+					return {codes: __("An item code is required.")
+				}
 				if (!attrs.prices || attrs.prices.length < 1) {
 					return { prices: __("An item should have at least one price") }
 				}
@@ -199,7 +202,9 @@ define(
 					if (resp.department && _.isObject(resp.department)) {
 						resp.department = new openhmis.Department(resp.department);
 					}
-
+					if (resp.codes) {
+						resp.codes = new openhmis.GenericCollection(resp.codes, { model: openhmis.ItemCode }).models;
+					}
 					if (resp.prices) {
 						resp.prices = new openhmis.GenericCollection(resp.prices, { model: openhmis.ItemPrice }).models;
 					}
